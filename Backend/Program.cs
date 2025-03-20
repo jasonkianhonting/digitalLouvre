@@ -1,4 +1,7 @@
 
+using backend.Classes;
+using backend.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +19,7 @@ builder.Services.AddHttpClient("ArtworkClient",
         client.DefaultRequestHeaders.Add("user-Agent",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0");
     });
+builder.Services.AddScoped<IArtworkServices, ArtworkServices>();
 
 var app = builder.Build();
 

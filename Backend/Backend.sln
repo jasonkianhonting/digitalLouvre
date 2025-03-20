@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend", "backend.csproj", "{03CAE449-D931-41A6-AD12-C1D58427B73C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerTests", "ControllerTests\ControllerTests.csproj", "{7AAC29A7-4D92-44A0-8BFF-F4D5A8590052}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{03CAE449-D931-41A6-AD12-C1D58427B73C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03CAE449-D931-41A6-AD12-C1D58427B73C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03CAE449-D931-41A6-AD12-C1D58427B73C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AAC29A7-4D92-44A0-8BFF-F4D5A8590052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AAC29A7-4D92-44A0-8BFF-F4D5A8590052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AAC29A7-4D92-44A0-8BFF-F4D5A8590052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AAC29A7-4D92-44A0-8BFF-F4D5A8590052}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

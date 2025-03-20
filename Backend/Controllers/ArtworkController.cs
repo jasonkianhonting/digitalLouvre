@@ -1,7 +1,10 @@
 using System.Text.Json;
+using backend.Classes;
+using backend.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 using Backend.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Backend.Controllers;
 
@@ -9,41 +12,17 @@ namespace Backend.Controllers;
 [Route("artworks")]
 public class ArtworkController : ControllerBase
 {
-    private readonly ILogger<ArtworkController> _logger;
-    
-    private HttpClient _httpClient;
-
-    public ArtworkController(ILogger<ArtworkController> logger, IHttpClientFactory httpClientFactory)
+    private readonly IArtworkServices _artworkServices;
+    public ArtworkController(IArtworkServices artworkServices)
     {
-        _logger = logger;
-        _httpClient = httpClientFactory.CreateClient("ArtworkClient");
-        
+        _artworkServices = artworkServices;
     }
 
     [HttpGet("getartwork")]
     public async Task<IActionResult> GetArtwork()
     {
-         Artwork? jsonContent; 
-        try
-        {
-            var response = await _httpClient.GetAsync(_httpClient.BaseAddress);
-
-            if (!response.IsSuccessStatusCode) return BadRequest();
-
-            var content = await response.Content.ReadAsStringAsync();
-            
-            jsonContent = JsonSerializer.Deserialize<Artwork>(content);
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, e.Message);
-            throw;
-        }
-
-        return Ok(jsonContent);
+         Artwork? artworks = await _artworkServices.GetArtworks();
+         if (artworks == null) return NotFound();
+         return new OkObjectResult(artworks);
     }
-    
-    
-    
-    
 }

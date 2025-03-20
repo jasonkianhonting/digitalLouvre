@@ -77,6 +77,34 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.slim.min.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.slim.min.map" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="ControllerTests\obj\ControllerTests.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="ControllerTests\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="ControllerTests\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="Tests\bin\Debug\net9.0\Tests.deps.json" />
+      <_ContentIncludedByDefault Remove="Tests\bin\Debug\net9.0\Tests.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="Tests\obj\Debug\net9.0\Tests.sourcelink.json" />
+      <_ContentIncludedByDefault Remove="Tests\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Tests\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="Tests\obj\Tests.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="ControllerTests\bin\Debug\net9.0\ControllerTests.deps.json" />
+      <_ContentIncludedByDefault Remove="ControllerTests\bin\Debug\net9.0\ControllerTests.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="ControllerTests\obj\Debug\net9.0\ControllerTests.sourcelink.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="ControllerTests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="ControllerTests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="ControllerTests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="ControllerTests\**" />
     </ItemGroup>
 
 </Project>
