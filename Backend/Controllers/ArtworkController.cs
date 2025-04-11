@@ -1,12 +1,11 @@
-using System.Text.Json;
-using backend.Classes;
 using backend.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 using Backend.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
+
 
 namespace Backend.Controllers;
+
 
 [ApiController]
 [Route("artworks")]

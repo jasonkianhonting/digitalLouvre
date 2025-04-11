@@ -1,6 +1,8 @@
 
 using backend.Classes;
 using backend.Interfaces;
+using Backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,12 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
     options.JsonSerializerOptions.WriteIndented = true;
-});;
+});
+
+builder.Services.AddDbContextPool<DigitalLouvreContext>(option =>
+{
+    option.UseNpgsql(builder.Configuration.GetConnectionString("DatabaseString"));
+});
 
 builder.Services.AddHttpClient("ArtworkClient",
     client =>
@@ -19,7 +26,10 @@ builder.Services.AddHttpClient("ArtworkClient",
         client.DefaultRequestHeaders.Add("user-Agent",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0");
     });
+
 builder.Services.AddScoped<IArtworkServices, ArtworkServices>();
+builder.Services.AddTransient<IUserServices, UserServices>();
+builder.Services.AddTransient<ITokenServices, TokenServices>();
 
 var app = builder.Build();
 
