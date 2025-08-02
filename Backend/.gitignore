@@ -199,7 +199,7 @@ publish/
 PublishScripts/
 appsettings.json
 appsettings.Development.json
-
+**/Migrations/*
 # NuGet Packages
 *.nupkg
 # NuGet Symbol Packages

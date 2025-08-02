@@ -13,9 +13,11 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.WriteIndented = true;
 });
 
-builder.Services.AddDbContextPool<DigitalLouvreContext>(option =>
+var connectionString = builder.Configuration.GetConnectionString("DatabaseString")?? throw new Exception($"Database connection string not found");
+
+builder.Services.AddDbContext<DigitalLouvreContext>(option =>
 {
-    option.UseNpgsql(builder.Configuration.GetConnectionString("DatabaseString"));
+    option.UseNpgsql(builder.Configuration.GetConnectionString(connectionString));
 });
 
 builder.Services.AddHttpClient("ArtworkClient",

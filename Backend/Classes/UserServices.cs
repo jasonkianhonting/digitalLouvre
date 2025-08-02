@@ -7,10 +7,12 @@ public class UserServices: IUserServices
 {
     private readonly ILogger<UserServices> _logger;
     private readonly ITokenServices _tokenServices;
-    public UserServices(ILogger<UserServices> logger, ITokenServices tokenServices )
+    private readonly DigitalLouvreContext _context;
+    public UserServices(ILogger<UserServices> logger, ITokenServices tokenServices, DigitalLouvreContext context )
     {
         _logger = logger;
         _tokenServices = tokenServices;
+        _context = context;
     }
 
     public Task<User?> Login(string username, string password)
