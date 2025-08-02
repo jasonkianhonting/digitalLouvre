@@ -5,8 +5,9 @@ namespace Backend.Models;
 
 public class User
 {
+    public int Id { get; set; }
     [Required] [Key]
-    public Guid Id { get; set; }
+    public Guid UserId { get; set; }
     public string FistName { get; set; }
     public string LastName { get; set; }
     [Required][PasswordPropertyText]

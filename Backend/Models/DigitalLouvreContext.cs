@@ -10,4 +10,12 @@ public class DigitalLouvreContext : DbContext
     {
         
     }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder
+            .Entity<User>()
+            .Property(e => e.Id).UseIdentityAlwaysColumn();
+    }
+
 }
