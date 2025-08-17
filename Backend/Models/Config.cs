@@ -4,9 +4,7 @@ namespace Backend.Models;
 
 public class Config
 {
-    [JsonPropertyName("iiif_url")]
-    public string? IiifUrl { get; set; }
+    [JsonPropertyName("iiif_url")] public string? IiifUrl { get; set; }
 
-    [JsonPropertyName("website_url")]
-    public string? WebsiteUrl { get; set; }
+    [JsonPropertyName("website_url")] public string? WebsiteUrl { get; set; }
 }

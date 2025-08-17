@@ -1,4 +1,3 @@
-
 using backend.Classes;
 using backend.Interfaces;
 using Backend.Models;
@@ -13,11 +12,12 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.WriteIndented = true;
 });
 
-var connectionString = builder.Configuration.GetConnectionString("DatabaseString")?? throw new Exception($"Database connection string not found");
+var connectionString = builder.Configuration.GetConnectionString("DatabaseString") ??
+                       throw new Exception("Database connection string not found");
 
 builder.Services.AddDbContext<DigitalLouvreContext>(option =>
 {
-    option.UseNpgsql(builder.Configuration.GetConnectionString(connectionString));
+    option.UseNpgsql(connectionString);
 });
 
 builder.Services.AddHttpClient("ArtworkClient",

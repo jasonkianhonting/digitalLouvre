@@ -1,11 +1,12 @@
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Backend.Models;
 
 public class ArtworkData
 {
-    
+    [JsonPropertyName("classification_id")]
+    public string? ClassificationId;
+
     [JsonPropertyName("id")] public int Id { get; set; }
 
     [JsonPropertyName("api_model")] public string? ApiModel { get; set; }
@@ -20,9 +21,11 @@ public class ArtworkData
 
     [JsonPropertyName("thumbnail")] public Thumbnail? Thumbnail { get; set; }
 
-    [JsonPropertyName("main_reference_number")] public string? MainReferenceNumber { get; set; }
+    [JsonPropertyName("main_reference_number")]
+    public string? MainReferenceNumber { get; set; }
 
-    [JsonPropertyName("has_not_been_viewed_much")] public bool? HasNotBeenViewedMuch { get; set; }
+    [JsonPropertyName("has_not_been_viewed_much")]
+    public bool? HasNotBeenViewedMuch { get; set; }
 
     [JsonPropertyName("boost_rank")] public object? BoostRank { get; set; }
 
@@ -32,9 +35,11 @@ public class ArtworkData
 
     [JsonPropertyName("date_display")] public string? DateDisplay { get; set; }
 
-    [JsonPropertyName("date_qualifier_title")] public string? DateQualifierTitle { get; set; }
+    [JsonPropertyName("date_qualifier_title")]
+    public string? DateQualifierTitle { get; set; }
 
-    [JsonPropertyName("date_qualifier_id")] public int? DateQualifierId { get; set; }
+    [JsonPropertyName("date_qualifier_id")]
+    public int? DateQualifierId { get; set; }
 
     [JsonPropertyName("artist_display")] public string? ArtistDisplay { get; set; }
 
@@ -42,11 +47,13 @@ public class ArtworkData
 
     [JsonPropertyName("description")] public object? Description { get; set; }
 
-    [JsonPropertyName("short_description")] public object? ShortDescription { get; set; }
+    [JsonPropertyName("short_description")]
+    public object? ShortDescription { get; set; }
 
     [JsonPropertyName("dimensions")] public string? Dimensions { get; set; }
 
-    [JsonPropertyName("dimensions_detail")] public List<DimensionsDetail>? DimensionsDetail { get; set; }
+    [JsonPropertyName("dimensions_detail")]
+    public List<DimensionsDetail>? DimensionsDetail { get; set; }
 
     [JsonPropertyName("medium_display")] public string? MediumDisplay { get; set; }
 
@@ -54,37 +61,47 @@ public class ArtworkData
 
     [JsonPropertyName("credit_line")] public string? CreditLine { get; set; }
 
-    [JsonPropertyName("catalogue_display")] public string? CatalogueDisplay { get; set; }
+    [JsonPropertyName("catalogue_display")]
+    public string? CatalogueDisplay { get; set; }
 
-    [JsonPropertyName("publication_history")] public object? PublicationHistory { get; set; }
+    [JsonPropertyName("publication_history")]
+    public object? PublicationHistory { get; set; }
 
-    [JsonPropertyName("exhibition_history")] public object? ExhibitionHistory { get; set; }
+    [JsonPropertyName("exhibition_history")]
+    public object? ExhibitionHistory { get; set; }
 
     [JsonPropertyName("provenance_text")] public object? ProvenanceText { get; set; }
 
     [JsonPropertyName("edition")] public object? Edition { get; set; }
 
-    [JsonPropertyName("publishing_verification_level")] public string? PublishingVerificationLevel { get; set; }
+    [JsonPropertyName("publishing_verification_level")]
+    public string? PublishingVerificationLevel { get; set; }
 
-    [JsonPropertyName("internal_department_id")] public int? InternalDepartmentId { get; set; }
+    [JsonPropertyName("internal_department_id")]
+    public int? InternalDepartmentId { get; set; }
 
     [JsonPropertyName("fiscal_year")] public object? FiscalYear { get; set; }
 
-    [JsonPropertyName("fiscal_year_deaccession")] public object? FiscalYearDeaccession { get; set; }
+    [JsonPropertyName("fiscal_year_deaccession")]
+    public object? FiscalYearDeaccession { get; set; }
 
     [JsonPropertyName("is_public_domain")] public bool? IsPublicDomain { get; set; }
 
     [JsonPropertyName("is_zoomable")] public bool? IsZoomable { get; set; }
 
-    [JsonPropertyName("max_zoom_window_size")] public int? MaxZoomWindowSize { get; set; }
+    [JsonPropertyName("max_zoom_window_size")]
+    public int? MaxZoomWindowSize { get; set; }
 
     [JsonPropertyName("copyright_notice")] public object? CopyrightNotice { get; set; }
 
-    [JsonPropertyName("has_multimedia_resources")] public bool? HasMultimediaResources { get; set; }
+    [JsonPropertyName("has_multimedia_resources")]
+    public bool? HasMultimediaResources { get; set; }
 
-    [JsonPropertyName("has_educational_resources")] public bool? HasEducationalResources { get; set; }
+    [JsonPropertyName("has_educational_resources")]
+    public bool? HasEducationalResources { get; set; }
 
-    [JsonPropertyName("has_advanced_imaging")] public bool? HasAdvancedImaging { get; set; }
+    [JsonPropertyName("has_advanced_imaging")]
+    public bool? HasAdvancedImaging { get; set; }
 
     [JsonPropertyName("colorfulness")] public double? Colorfulness { get; set; }
 
@@ -106,7 +123,8 @@ public class ArtworkData
 
     [JsonPropertyName("nomisma_id")] public object? NomismaId { get; set; }
 
-    [JsonPropertyName("artwork_type_title")] public string? ArtworkTypeTitle { get; set; }
+    [JsonPropertyName("artwork_type_title")]
+    public string? ArtworkTypeTitle { get; set; }
 
     [JsonPropertyName("artwork_type_id")] public int? ArtworkTypeId { get; set; }
 
@@ -140,15 +158,17 @@ public class ArtworkData
 
     [JsonPropertyName("style_titles")] public List<object>? StyleTitles { get; set; }
 
-    [JsonPropertyName("classification_id")] public string? ClassificationId;
+    [JsonPropertyName("classification_title")]
+    public string? ClassificationTitle { get; set; }
 
-    [JsonPropertyName("classification_title")] public string? ClassificationTitle { get; set; }
+    [JsonPropertyName("alt_classification_ids")]
+    public List<string>? AltClassificationIds { get; set; }
 
-    [JsonPropertyName("alt_classification_ids")] public List<string>? AltClassificationIds { get; set; }
+    [JsonPropertyName("classification_ids")]
+    public List<string>? ClassificationIds { get; set; }
 
-    [JsonPropertyName("classification_ids")] public List<string>? ClassificationIds { get; set; }
-
-    [JsonPropertyName("classification_titles")] public List<string>? ClassificationTitles { get; set; }
+    [JsonPropertyName("classification_titles")]
+    public List<string>? ClassificationTitles { get; set; }
 
     [JsonPropertyName("subject_id")] public object? SubjectId { get; set; }
 
@@ -168,7 +188,8 @@ public class ArtworkData
 
     [JsonPropertyName("technique_id")] public object? TechniqueId { get; set; }
 
-    [JsonPropertyName("alt_technique_ids")] public List<object>? AltTechniqueIds { get; set; }
+    [JsonPropertyName("alt_technique_ids")]
+    public List<object>? AltTechniqueIds { get; set; }
 
     [JsonPropertyName("technique_ids")] public List<object>? TechniqueIds { get; set; }
 
@@ -193,8 +214,9 @@ public class ArtworkData
     [JsonPropertyName("section_titles")] public List<string>? SectionTitles { get; set; }
 
     [JsonPropertyName("site_ids")] public List<object>? SiteIds { get; set; }
-    
-    [JsonPropertyName("source_updated_at")] public DateTime? SourceUpdatedAt { get; set; }
+
+    [JsonPropertyName("source_updated_at")]
+    public DateTime? SourceUpdatedAt { get; set; }
 
     [JsonPropertyName("updated_at")] public DateTime? UpdatedAt { get; set; }
 

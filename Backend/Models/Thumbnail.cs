@@ -11,4 +11,4 @@ public class Thumbnail
     [JsonPropertyName("height")] public int? Height { get; set; }
 
     [JsonPropertyName("alt_text")] public string? AltText { get; set; }
-};
+}
