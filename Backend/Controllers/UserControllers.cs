@@ -15,7 +15,7 @@ public class UserControllers : ControllerBase
     }
 
     [HttpGet("login")]
-    public async Task<IActionResult> Login()
+    public async Task<IActionResult> Login(string username, string password)
     {
         _userServices.Login("Test1", "admin");
         return null;

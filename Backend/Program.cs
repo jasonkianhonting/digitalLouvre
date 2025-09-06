@@ -15,10 +15,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 var connectionString = builder.Configuration.GetConnectionString("DatabaseString") ??
                        throw new Exception("Database connection string not found");
 
-builder.Services.AddDbContext<DigitalLouvreContext>(option =>
-{
-    option.UseNpgsql(connectionString);
-});
+builder.Services.AddDbContext<DigitalLouvreContext>(option => { option.UseNpgsql(connectionString); });
 
 builder.Services.AddHttpClient("ArtworkClient",
     client =>
@@ -32,6 +29,7 @@ builder.Services.AddHttpClient("ArtworkClient",
 builder.Services.AddScoped<IArtworkServices, ArtworkServices>();
 builder.Services.AddTransient<IUserServices, UserServices>();
 builder.Services.AddTransient<ITokenServices, TokenServices>();
+
 
 var app = builder.Build();
 
@@ -55,6 +53,8 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapStaticAssets();
 
