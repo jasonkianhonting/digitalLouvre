@@ -2,11 +2,11 @@ using backend.Interfaces;
 
 namespace backend.Classes;
 
-public class TokenServices : ITokenServices
+public class TokenService : ITokenService
 {
-    private readonly ILogger<TokenServices> _logger;
+    private readonly ILogger<TokenService> _logger;
 
-    public TokenServices(ILogger<TokenServices> logger)
+    public TokenService(ILogger<TokenService> logger)
     {
         _logger = logger;
     }

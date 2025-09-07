@@ -4,12 +4,12 @@ using Backend.Models;
 
 namespace backend.Classes;
 
-public class ArtworkServices : IArtworkServices
+public class ArtworkService : IArtworkService
 {
     private readonly HttpClient _httpClient;
-    private readonly ILogger<ArtworkServices> _logger;
+    private readonly ILogger<ArtworkService> _logger;
 
-    public ArtworkServices(ILogger<ArtworkServices> logger, IHttpClientFactory httpClientFactory)
+    public ArtworkService(ILogger<ArtworkService> logger, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
         _httpClient = httpClientFactory.CreateClient("ArtworkClient");

@@ -7,17 +7,17 @@ namespace Backend.Controllers;
 [Route("artworks")]
 public class ArtworkController : ControllerBase
 {
-    private readonly IArtworkServices _artworkServices;
+    private readonly IArtworkService _artworkService;
 
-    public ArtworkController(IArtworkServices artworkServices)
+    public ArtworkController(IArtworkService artworkService)
     {
-        _artworkServices = artworkServices;
+        _artworkService = artworkService;
     }
 
     [HttpGet("getartwork")]
     public async Task<IActionResult> GetArtwork()
     {
-        var artworks = await _artworkServices.GetArtworks();
+        var artworks = await _artworkService.GetArtworks();
         if (artworks == null) return NotFound();
         return new OkObjectResult(artworks);
     }

@@ -2,7 +2,7 @@ using Backend.Models;
 
 namespace backend.Interfaces;
 
-public interface IArtworkServices
+public interface IArtworkService
 {
     public Task<Artwork?> GetArtworks();
 }

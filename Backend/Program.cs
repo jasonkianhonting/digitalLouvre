@@ -12,6 +12,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.WriteIndented = true;
 });
 
+builder.Services.AddControllers(
+    options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+
 var connectionString = builder.Configuration.GetConnectionString("DatabaseString") ??
                        throw new Exception("Database connection string not found");
 
@@ -26,9 +29,9 @@ builder.Services.AddHttpClient("ArtworkClient",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0");
     });
 
-builder.Services.AddScoped<IArtworkServices, ArtworkServices>();
-builder.Services.AddTransient<IUserServices, UserServices>();
-builder.Services.AddTransient<ITokenServices, TokenServices>();
+builder.Services.AddScoped<IArtworkService, ArtworkService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<ITokenService, TokenService>();
 
 
 var app = builder.Build();

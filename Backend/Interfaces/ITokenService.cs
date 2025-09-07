@@ -1,6 +1,6 @@
 namespace backend.Interfaces;
 
-public interface ITokenServices
+public interface ITokenService
 {
     public Task<string> GenerateToken();
 }
