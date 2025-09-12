@@ -1,4 +1,5 @@
 using backend.Interfaces;
+using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers;
@@ -15,17 +16,17 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("login")]
-    public async Task<IActionResult> Login(string username, string password)
+    public async Task<IActionResult> Login(User user)
     {
-        var loginSuccess = await _userService.Login(username, password);
+        var loginSuccess = await _userService.Login(user);
         return new OkObjectResult(loginSuccess);
     }
 
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(string username, string firstName, string lastName, string password)
+    public async Task<IActionResult> Register(User user)
     {
-        var registerSuccess = await _userService.Register(username, firstName, lastName, password);
+        var registerSuccess = await _userService.Register(user);
         return new OkObjectResult(registerSuccess);
     }
 }

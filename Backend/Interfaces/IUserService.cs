@@ -4,6 +4,6 @@ namespace backend.Interfaces;
 
 public interface IUserService
 {
-    public Task<bool> Login(string username, string password);
-    public Task<User?> Register(string username, string firstName, string lastName, string password);
+    public Task<DigitalLouvreResponseDto> Login(User user);
+    public Task<DigitalLouvreResponseDto> Register(User user);
 }

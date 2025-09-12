@@ -1,6 +1,5 @@
 using backend.Interfaces;
 using Backend.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Classes;
 
@@ -15,40 +14,56 @@ public class UserService : IUserService
         _context = context;
     }
 
-    public Task<bool> Login([FromBody] string username, [FromBody] string password)
+    public Task<DigitalLouvreResponseDto> Login(User userRetrieved)
     {
-        var isSuccess = false;
+        var loginUserDto = new DigitalLouvreResponseDto();
         try
         {
-            if (_context.Users.Any(x =>
-                    x.Username == username && x.Password == BCrypt.Net.BCrypt.HashPassword(password))) isSuccess = true;
+            if (!_context.Users.Any(x =>
+                    x.Username == userRetrieved.Username &&
+                    x.Password == userRetrieved.Password))
+            {
+                loginUserDto.IsSuccess = false;
+                loginUserDto.Message = "Username or password is incorrect";
+            }
+            else
+            {
+                loginUserDto.IsSuccess = true;
+            }
+                
         }
         catch (Exception e)
         {
             _logger.Log(LogLevel.Error, e.Message);
+            loginUserDto.IsSuccess = false;
+            loginUserDto.Message = $"{e.Message}, please review the logs.";
+            loginUserDto.Exception = e.InnerException?.Message;
         }
 
-        return Task.FromResult(isSuccess);
+        return Task.FromResult(loginUserDto);
     }
 
-    public Task<User?> Register([FromBody] string username, [FromBody] string firstName, [FromBody] string lastName,
-        [FromBody] string password)
+    public Task<DigitalLouvreResponseDto> Register(User newUserCreated)
     {
-        var newUserCreated = new User();
+        var createUserDto = new DigitalLouvreResponseDto();
         try
         {
             newUserCreated.UserId = Guid.NewGuid();
-            newUserCreated.FirstName = firstName;
-            newUserCreated.LastName = lastName;
-            newUserCreated.Password = BCrypt.Net.BCrypt.HashPassword(password);
-
+            newUserCreated.Password = BCrypt.Net.BCrypt.HashPassword(newUserCreated.Password);
             _context.Users.Add(newUserCreated);
+            _context.SaveChanges();
+            createUserDto.Message = "User created";
+            createUserDto.Exception = null;
+            createUserDto.IsSuccess = true;
         }
         catch (Exception e)
         {
             _logger.Log(LogLevel.Error, e.Message);
+            createUserDto.Message = $"{e.Message}, please review the logs.";
+            createUserDto.IsSuccess = false;
+            createUserDto.Exception = e.InnerException?.Message;
         }
 
-        return Task.FromResult<User?>(newUserCreated);
+        return Task.FromResult(createUserDto);
     }
 }
