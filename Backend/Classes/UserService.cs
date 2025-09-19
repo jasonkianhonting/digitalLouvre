@@ -1,5 +1,6 @@
 using backend.Interfaces;
 using Backend.Models;
+using BCrypt.Net;
 
 namespace backend.Classes;
 
@@ -20,17 +21,27 @@ public class UserService : IUserService
         try
         {
             if (!_context.Users.Any(x =>
-                    x.Username == userRetrieved.Username &&
-                    x.Password == userRetrieved.Password))
+                    x.Username == userRetrieved.Username))
             {
                 loginUserDto.IsSuccess = false;
-                loginUserDto.Message = "Username or password is incorrect";
+                loginUserDto.Message = "Account does not exist";
+                return Task.FromResult(loginUserDto);
             }
-            else
+            
+            var userToBeVerified = _context.Users.FirstOrDefault(x=> x.Username != null && x.Username.Equals(userRetrieved.Username));
+            var isAuthenticated = BCrypt.Net.BCrypt.EnhancedVerify(userRetrieved.Password, userToBeVerified?.Password);
+            
+            switch (isAuthenticated)
             {
-                loginUserDto.IsSuccess = true;
+                case false:
+                    loginUserDto.IsSuccess = false;
+                    loginUserDto.Message = "Username or password is incorrect.";
+                    break;
+                case true:
+                    loginUserDto.IsSuccess = true;
+                    loginUserDto.Message = "Login successful.";
+                    break;
             }
-                
         }
         catch (Exception e)
         {
@@ -49,7 +60,7 @@ public class UserService : IUserService
         try
         {
             newUserCreated.UserId = Guid.NewGuid();
-            newUserCreated.Password = BCrypt.Net.BCrypt.HashPassword(newUserCreated.Password);
+            newUserCreated.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(newUserCreated.Password);
             _context.Users.Add(newUserCreated);
             _context.SaveChanges();
             createUserDto.Message = "User created";
