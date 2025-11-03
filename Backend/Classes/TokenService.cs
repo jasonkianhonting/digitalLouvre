@@ -1,4 +1,5 @@
 using backend.Interfaces;
+using Backend.Models;
 
 namespace backend.Classes;
 
@@ -11,7 +12,17 @@ public class TokenService : ITokenService
         _logger = logger;
     }
 
-    public Task<string> GenerateToken()
+    public Task<DigitalLouvreResponseDto> ValidateToken()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<DigitalLouvreResponseDto> RefreshToken()
+    {
+        throw new NotImplementedException();
+    }
+
+    Task<DigitalLouvreResponseDto> ITokenService.GenerateToken()
     {
         throw new NotImplementedException();
     }

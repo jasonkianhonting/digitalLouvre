@@ -1,6 +1,7 @@
+using Auth0.AspNetCore.Authentication;
 using backend.Interfaces;
 using Backend.Models;
-using BCrypt.Net;
+using Microsoft.AspNetCore.Authentication;
 
 namespace backend.Classes;
 
@@ -27,10 +28,11 @@ public class UserService : IUserService
                 loginUserDto.Message = "Account does not exist";
                 return Task.FromResult(loginUserDto);
             }
-            
-            var userToBeVerified = _context.Users.FirstOrDefault(x=> x.Username != null && x.Username.Equals(userRetrieved.Username));
-            var isAuthenticated = BCrypt.Net.BCrypt.EnhancedVerify(userRetrieved.Password, userToBeVerified?.Password);
-            
+
+            var userToBeVerified =
+                _context.Users.FirstOrDefault(x => x.Username != null && x.Username.Equals(userRetrieved.Username));
+            var isAuthenticated = BCrypt.Net.BCrypt.EnhancedVerify(userRetrieved?.Password, userToBeVerified?.Password);
+
             switch (isAuthenticated)
             {
                 case false:
@@ -38,6 +40,13 @@ public class UserService : IUserService
                     loginUserDto.Message = "Username or password is incorrect.";
                     break;
                 case true:
+
+                    var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
+                        .WithRedirectUri("http://localhost:5000/login")
+                        .Build();
+                    
+                    var authenticatedStatus = new DefaultHttpContext().HttpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
+                    
                     loginUserDto.IsSuccess = true;
                     loginUserDto.Message = "Login successful.";
                     break;

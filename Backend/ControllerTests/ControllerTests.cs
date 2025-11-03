@@ -1,6 +1,4 @@
-﻿using backend.Classes;
-using backend.Interfaces;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Moq;
 
 namespace ControllerTests;
