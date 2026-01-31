@@ -4,221 +4,138 @@ namespace Backend.Models;
 
 public class ArtworkData
 {
-    [JsonPropertyName("classification_id")]
-    public string? ClassificationId;
+    
+    [JsonPropertyName("id")] public int Id { get; init; }
+    
+    [JsonPropertyName("title")] public string? Title { get; init; }
 
-    [JsonPropertyName("id")] public int Id { get; set; }
+    [JsonPropertyName("thumbnail")] public Thumbnail? Thumbnail { get; init; }
+    
+    [JsonPropertyName("date_start")] public int? DateStart { get; init; }
 
-    [JsonPropertyName("api_model")] public string? ApiModel { get; set; }
+    [JsonPropertyName("date_end")] public int? DateEnd { get; init; }
 
-    [JsonPropertyName("api_link")] public string? ApiLink { get; set; }
+    [JsonPropertyName("date_display")] public string? DateDisplay { get; init; }
+    
+    [JsonPropertyName("artist_display")] public string? ArtistDisplay { get; init; }
 
-    [JsonPropertyName("is_boosted")] public bool? IsBoosted { get; set; }
+    [JsonPropertyName("place_of_origin")] public string? PlaceOfOrigin { get; init; }
 
-    [JsonPropertyName("title")] public string? Title { get; set; }
-
-    [JsonPropertyName("alt_titles")] public object? AltTitles { get; set; }
-
-    [JsonPropertyName("thumbnail")] public Thumbnail? Thumbnail { get; set; }
-
-    [JsonPropertyName("main_reference_number")]
-    public string? MainReferenceNumber { get; set; }
-
-    [JsonPropertyName("has_not_been_viewed_much")]
-    public bool? HasNotBeenViewedMuch { get; set; }
-
-    [JsonPropertyName("boost_rank")] public object? BoostRank { get; set; }
-
-    [JsonPropertyName("date_start")] public int? DateStart { get; set; }
-
-    [JsonPropertyName("date_end")] public int? DateEnd { get; set; }
-
-    [JsonPropertyName("date_display")] public string? DateDisplay { get; set; }
-
-    [JsonPropertyName("date_qualifier_title")]
-    public string? DateQualifierTitle { get; set; }
-
-    [JsonPropertyName("date_qualifier_id")]
-    public int? DateQualifierId { get; set; }
-
-    [JsonPropertyName("artist_display")] public string? ArtistDisplay { get; set; }
-
-    [JsonPropertyName("place_of_origin")] public string? PlaceOfOrigin { get; set; }
-
-    [JsonPropertyName("description")] public object? Description { get; set; }
+    [JsonPropertyName("description")] public object? Description { get; init; }
 
     [JsonPropertyName("short_description")]
-    public object? ShortDescription { get; set; }
+    public object? ShortDescription { get; init; }
 
-    [JsonPropertyName("dimensions")] public string? Dimensions { get; set; }
+    [JsonPropertyName("dimensions")] public string? Dimensions { get; init; }
 
     [JsonPropertyName("dimensions_detail")]
-    public List<DimensionsDetail>? DimensionsDetail { get; set; }
+    public List<DimensionsDetail>? DimensionsDetail { get; init; }
 
-    [JsonPropertyName("medium_display")] public string? MediumDisplay { get; set; }
+    [JsonPropertyName("medium_display")] public string? MediumDisplay { get; init; }
 
-    [JsonPropertyName("inscriptions")] public object? Inscriptions { get; set; }
+    [JsonPropertyName("inscriptions")] public object? Inscriptions { get; init; }
 
-    [JsonPropertyName("credit_line")] public string? CreditLine { get; set; }
+    [JsonPropertyName("credit_line")] public string? CreditLine { get; init; }
 
     [JsonPropertyName("catalogue_display")]
-    public string? CatalogueDisplay { get; set; }
+    public string? CatalogueDisplay { get; init; }
 
     [JsonPropertyName("publication_history")]
-    public object? PublicationHistory { get; set; }
+    public object? PublicationHistory { get; init; }
 
     [JsonPropertyName("exhibition_history")]
-    public object? ExhibitionHistory { get; set; }
+    public object? ExhibitionHistory { get; init; }
 
-    [JsonPropertyName("provenance_text")] public object? ProvenanceText { get; set; }
+    [JsonPropertyName("provenance_text")] public object? ProvenanceText { get; init; }
 
-    [JsonPropertyName("edition")] public object? Edition { get; set; }
+    [JsonPropertyName("edition")] public object? Edition { get; init; }
 
     [JsonPropertyName("publishing_verification_level")]
-    public string? PublishingVerificationLevel { get; set; }
+    public string? PublishingVerificationLevel { get; init; }
 
     [JsonPropertyName("internal_department_id")]
-    public int? InternalDepartmentId { get; set; }
+    public int? InternalDepartmentId { get; init; }
 
-    [JsonPropertyName("fiscal_year")] public object? FiscalYear { get; set; }
+    [JsonPropertyName("fiscal_year")] public object? FiscalYear { get; init; }
 
     [JsonPropertyName("fiscal_year_deaccession")]
-    public object? FiscalYearDeaccession { get; set; }
+    public object? FiscalYearDeaccession { get; init; }
 
-    [JsonPropertyName("is_public_domain")] public bool? IsPublicDomain { get; set; }
+    [JsonPropertyName("is_public_domain")] public bool? IsPublicDomain { get; init; }
 
-    [JsonPropertyName("is_zoomable")] public bool? IsZoomable { get; set; }
+    [JsonPropertyName("is_zoomable")] public bool? IsZoomable { get; init; }
 
     [JsonPropertyName("max_zoom_window_size")]
-    public int? MaxZoomWindowSize { get; set; }
+    public int? MaxZoomWindowSize { get; init; }
 
-    [JsonPropertyName("copyright_notice")] public object? CopyrightNotice { get; set; }
+    [JsonPropertyName("copyright_notice")] public object? CopyrightNotice { get; init; }
+    
+    [JsonPropertyName("latlon")] public object? Latlon { get; init; }
 
-    [JsonPropertyName("has_multimedia_resources")]
-    public bool? HasMultimediaResources { get; set; }
+    [JsonPropertyName("is_on_view")] public bool? IsOnView { get; init; }
 
-    [JsonPropertyName("has_educational_resources")]
-    public bool? HasEducationalResources { get; set; }
+    [JsonPropertyName("on_loan_display")] public object? OnLoanDisplay { get; init; }
 
-    [JsonPropertyName("has_advanced_imaging")]
-    public bool? HasAdvancedImaging { get; set; }
+    [JsonPropertyName("gallery_title")] public object? GalleryTitle { get; init; }
 
-    [JsonPropertyName("colorfulness")] public double? Colorfulness { get; set; }
+    [JsonPropertyName("gallery_id")] public object? GalleryId { get; init; }
 
-    [JsonPropertyName("color")] public Color? Color { get; set; }
-
-    [JsonPropertyName("latitude")] public object? Latitude { get; set; }
-
-    [JsonPropertyName("longitude")] public object? Longitude { get; set; }
-
-    [JsonPropertyName("latlon")] public object? Latlon { get; set; }
-
-    [JsonPropertyName("is_on_view")] public bool? IsOnView { get; set; }
-
-    [JsonPropertyName("on_loan_display")] public object? OnLoanDisplay { get; set; }
-
-    [JsonPropertyName("gallery_title")] public object? GalleryTitle { get; set; }
-
-    [JsonPropertyName("gallery_id")] public object? GalleryId { get; set; }
-
-    [JsonPropertyName("nomisma_id")] public object? NomismaId { get; set; }
+    [JsonPropertyName("nomisma_id")] public object? NomismaId { get; init; }
 
     [JsonPropertyName("artwork_type_title")]
-    public string? ArtworkTypeTitle { get; set; }
+    public string? ArtworkTypeTitle { get; init; }
 
-    [JsonPropertyName("artwork_type_id")] public int? ArtworkTypeId { get; set; }
+    [JsonPropertyName("artwork_type_id")] public int? ArtworkTypeId { get; init; }
 
-    [JsonPropertyName("department_title")] public string? DepartmentTitle { get; set; }
+    [JsonPropertyName("department_title")] public string? DepartmentTitle { get; init; }
 
-    [JsonPropertyName("department_id")] public string? DepartmentId { get; set; }
+    [JsonPropertyName("department_id")] public string? DepartmentId { get; init; }
 
-    [JsonPropertyName("artist_id")] public int? ArtistId { get; set; }
+    [JsonPropertyName("artist_id")] public int? ArtistId { get; init; }
 
-    [JsonPropertyName("artist_title")] public string? ArtistTitle { get; set; }
+    [JsonPropertyName("artist_title")] public string? ArtistTitle { get; init; }
 
-    [JsonPropertyName("alt_artist_ids")] public List<object>? AltArtistIds { get; set; }
+    [JsonPropertyName("alt_artist_ids")] public List<object>? AltArtistIds { get; init; }
 
-    [JsonPropertyName("artist_ids")] public List<int>? ArtistIds { get; set; }
+    [JsonPropertyName("artist_ids")] public List<int>? ArtistIds { get; init; }
 
-    [JsonPropertyName("artist_titles")] public List<string>? ArtistTitles { get; set; }
+    [JsonPropertyName("artist_titles")] public List<string>? ArtistTitles { get; init; }
 
-    [JsonPropertyName("category_ids")] public List<string>? CategoryIds { get; set; }
+    [JsonPropertyName("category_ids")] public List<string>? CategoryIds { get; init; }
 
-    [JsonPropertyName("category_titles")] public List<string>? CategoryTitles { get; set; }
+    [JsonPropertyName("category_titles")] public List<string>? CategoryTitles { get; init; }
 
-    [JsonPropertyName("term_titles")] public List<string>? TermTitles { get; set; }
+    [JsonPropertyName("term_titles")] public List<string>? TermTitles { get; init; }
 
-    [JsonPropertyName("style_id")] public object? StyleId { get; set; }
+    [JsonPropertyName("style_id")] public object? StyleId { get; init; }
 
-    [JsonPropertyName("style_title")] public object? StyleTitle { get; set; }
+    [JsonPropertyName("style_title")] public object? StyleTitle { get; init; }
 
-    [JsonPropertyName("alt_style_ids")] public List<object>? AltStyleIds { get; set; }
+    [JsonPropertyName("alt_style_ids")] public List<object>? AltStyleIds { get; init; }
 
-    [JsonPropertyName("style_ids")] public List<object>? StyleIds { get; set; }
+    [JsonPropertyName("style_ids")] public List<object>? StyleIds { get; init; }
 
-    [JsonPropertyName("style_titles")] public List<object>? StyleTitles { get; set; }
+    [JsonPropertyName("style_titles")] public List<object>? StyleTitles { get; init; }
 
     [JsonPropertyName("classification_title")]
-    public string? ClassificationTitle { get; set; }
+    public string? ClassificationTitle { get; init; }
 
     [JsonPropertyName("alt_classification_ids")]
-    public List<string>? AltClassificationIds { get; set; }
+    public List<string>? AltClassificationIds { get; init; }
 
     [JsonPropertyName("classification_ids")]
-    public List<string>? ClassificationIds { get; set; }
+    public List<string>? ClassificationIds { get; init; }
 
     [JsonPropertyName("classification_titles")]
-    public List<string>? ClassificationTitles { get; set; }
+    public List<string>? ClassificationTitles { get; init; }
 
-    [JsonPropertyName("subject_id")] public object? SubjectId { get; set; }
+    [JsonPropertyName("subject_id")] public object? SubjectId { get; init; }
 
-    [JsonPropertyName("alt_subject_ids")] public List<object>? AltSubjectIds { get; set; }
+    [JsonPropertyName("alt_subject_ids")] public List<object>? AltSubjectIds { get; init; }
 
-    [JsonPropertyName("subject_ids")] public List<object>? SubjectIds { get; set; }
+    [JsonPropertyName("subject_ids")] public List<object>? SubjectIds { get; init; }
 
-    [JsonPropertyName("subject_titles")] public List<object>? SubjectTitles { get; set; }
-
-    [JsonPropertyName("material_id")] public string? MaterialId { get; set; }
-
-    [JsonPropertyName("alt_material_ids")] public List<string>? AltMaterialIds { get; set; }
-
-    [JsonPropertyName("material_ids")] public List<string>? MaterialIds { get; set; }
-
-    [JsonPropertyName("material_titles")] public List<string>? MaterialTitles { get; set; }
-
-    [JsonPropertyName("technique_id")] public object? TechniqueId { get; set; }
-
-    [JsonPropertyName("alt_technique_ids")]
-    public List<object>? AltTechniqueIds { get; set; }
-
-    [JsonPropertyName("technique_ids")] public List<object>? TechniqueIds { get; set; }
-
-    [JsonPropertyName("technique_titles")] public List<object>? TechniqueTitles { get; set; }
-
-    [JsonPropertyName("theme_titles")] public List<object>? ThemeTitles { get; set; }
-
-    [JsonPropertyName("image_id")] public string? ImageId { get; set; }
-
-    [JsonPropertyName("alt_image_ids")] public List<object>? AltImageIds { get; set; }
-
-    [JsonPropertyName("document_ids")] public List<object>? DocumentIds { get; set; }
-
-    [JsonPropertyName("sound_ids")] public List<object>? SoundIds { get; set; }
-
-    [JsonPropertyName("video_ids")] public List<object>? VideoIds { get; set; }
-
-    [JsonPropertyName("text_ids")] public List<object>? TextIds { get; set; }
-
-    [JsonPropertyName("section_ids")] public List<long>? SectionIds { get; set; }
-
-    [JsonPropertyName("section_titles")] public List<string>? SectionTitles { get; set; }
-
-    [JsonPropertyName("site_ids")] public List<object>? SiteIds { get; set; }
-
-    [JsonPropertyName("source_updated_at")]
-    public DateTime? SourceUpdatedAt { get; set; }
-
-    [JsonPropertyName("updated_at")] public DateTime? UpdatedAt { get; set; }
-
-    [JsonPropertyName("timestamp")] public DateTime? Timestamp { get; set; }
+    [JsonPropertyName("subject_titles")] public List<object>? SubjectTitles { get; init; }
+    
+    [JsonPropertyName("updated_at")] public DateTime? UpdatedAt { get; init; }
 }

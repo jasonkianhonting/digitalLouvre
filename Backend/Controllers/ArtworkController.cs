@@ -14,7 +14,7 @@ public class ArtworkController : ControllerBase
         _artworkService = artworkService;
     }
 
-    [HttpGet("getartwork")]
+    [HttpGet("getArtwork")]
     public async Task<IActionResult> GetArtwork()
     {
         var artworks = await _artworkService.GetArtworks();

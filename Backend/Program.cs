@@ -1,8 +1,5 @@
-using Auth0.AspNetCore.Authentication;
-using backend.Classes;
 using backend.Interfaces;
-using Backend.Models;
-using Microsoft.EntityFrameworkCore;
+using backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,11 +13,6 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddControllers(options =>
     options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 
-var connectionString = builder.Configuration.GetConnectionString("DatabaseString") ??
-                       throw new Exception("Database connection string not found");
-
-builder.Services.AddDbContext<DigitalLouvreContext>(option => { option.UseNpgsql(connectionString); });
-
 builder.Services.AddHttpClient("ArtworkClient",
     client =>
     {
@@ -30,15 +22,7 @@ builder.Services.AddHttpClient("ArtworkClient",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0");
     });
 
-builder.Services.AddAuth0WebAppAuthentication(options =>
-{
-    options.Domain = builder.Configuration["Auth0:Domain"] ??  throw new Exception("Domain string isn't found");
-    options.ClientId = builder.Configuration["Auth0:ClientId"] ??  throw new Exception("Client Id string isn't found");;
-});
-
 builder.Services.AddScoped<IArtworkService, ArtworkService>();
-builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<ITokenService, TokenService>();
 
 
 var app = builder.Build();
