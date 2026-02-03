@@ -1,8 +1,8 @@
-using Backend.Models;
+using backend.Models;
 
 namespace backend.Interfaces;
 
 public interface IArtworkService
 {
-    public Task<Artwork?> GetArtworks();
+    public Task<ResponseDto?> GetRandomArtworks();
 }

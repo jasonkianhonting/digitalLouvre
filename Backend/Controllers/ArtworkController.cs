@@ -1,4 +1,6 @@
+using System.Net;
 using backend.Interfaces;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers;
@@ -14,11 +16,17 @@ public class ArtworkController : ControllerBase
         _artworkService = artworkService;
     }
 
-    [HttpGet("getArtwork")]
-    public async Task<IActionResult> GetArtwork()
+    [HttpGet("getArtworksForTheDay")]
+    public async Task<IActionResult> GetArtworksForTheDay()
     {
-        var artworks = await _artworkService.GetArtworks();
-        if (artworks == null) return NotFound();
-        return new OkObjectResult(artworks);
+        var responseDto = await _artworkService.GetRandomArtworks();
+
+        return responseDto switch
+        {
+            null => StatusCode((int)HttpStatusCode.InternalServerError, responseDto),
+            { IsSuccess: true, Data: null } => NotFound(responseDto),
+            { IsSuccess: true } => Ok(responseDto),
+            { IsSuccess: false } => BadRequest(responseDto)
+        };
     }
 }

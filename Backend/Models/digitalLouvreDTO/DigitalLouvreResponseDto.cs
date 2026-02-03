@@ -1,4 +1,4 @@
-namespace Backend.Models;
+namespace backend.Models.digitalLouvreDTO;
 
 public class DigitalLouvreResponseDto
 {

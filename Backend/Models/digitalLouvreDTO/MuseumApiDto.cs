@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 
-namespace Backend.Models;
+namespace backend.Models.digitalLouvreDTO;
 
-public class Artwork
+public class MuseumApiDto
 {
     [JsonPropertyName("data")] public IEnumerable<ArtworkData>? Data { get; init; }
 
