@@ -16,10 +16,24 @@ public class ArtworkController : ControllerBase
         _artworkService = artworkService;
     }
 
-    [HttpGet("getArtworksForTheDay")]
-    public async Task<IActionResult> GetArtworksForTheDay()
+    [HttpGet("getRandomArtworks")]
+    public async Task<IActionResult> GetRandomArtworks()
     {
         var responseDto = await _artworkService.GetRandomArtworks();
+
+        return responseDto switch
+        {
+            null => StatusCode((int)HttpStatusCode.InternalServerError, responseDto),
+            { IsSuccess: true, Data: null } => NotFound(responseDto),
+            { IsSuccess: true } => Ok(responseDto),
+            { IsSuccess: false } => BadRequest(responseDto)
+        };
+    }
+    
+    [HttpGet("searchArtworks")]
+    public async Task<IActionResult> SearchArtworks([FromQuery] string query)
+    {
+        var responseDto = await _artworkService.SearchArtwork(query);
 
         return responseDto switch
         {
