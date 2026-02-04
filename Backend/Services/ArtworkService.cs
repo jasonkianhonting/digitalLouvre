@@ -1,9 +1,9 @@
-using System.Net;
 using System.Text.Json;
 using backend.Interfaces;
 using backend.Models;
 using backend.Models.digitalLouvreDTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace backend.Services;
 
@@ -12,64 +12,26 @@ public class ArtworkService(ILogger<ArtworkService> logger, IHttpClientFactory h
 {
     private readonly HttpClient _httpClient = httpClientFactory.CreateClient("ArtworkClient");
 
-    #region GetRandomArtworks
+    #region GetArtworks
 
-    public async Task<ResponseDto?> GetRandomArtworks()
+    public async Task<ResponseDto?> GetArtworks(int id, int page, int limit)
     {
         var responseObj = new ResponseDto();
 
         try
         {
-            var response = await _httpClient.GetAsync(_httpClient.BaseAddress);
+            var finalisedAddress = id <= 0 ? $"{_httpClient.BaseAddress}" : $"{_httpClient.BaseAddress}/{id}";
 
-            var content = await response.Content.ReadAsStringAsync();
-
-            if (!response.IsSuccessStatusCode)
+            var paramsUsed = new Dictionary<string, int>()
             {
-                responseObj = responseObj with
-                {
-                    IsSuccess = false,
-                    ErrorMessage = response.ReasonPhrase,
-                    StatusCode = response.StatusCode
-                };
-                return responseObj;
-            }
-
-            var jsonContent = JsonSerializer.Deserialize<MuseumApiDto>(content);
-            responseObj = responseObj with
-            {
-                Data = jsonContent,
-                IsSuccess = true,
-                StatusCode = response.StatusCode
+                { "page", page },
+                { "limit", limit }
             };
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, ex.Message);
-            responseObj = new ResponseDto()
-            {
-                IsSuccess = false,
-                ErrorMessage = ex.Message,
-                StatusCode = HttpStatusCode.InternalServerError
-            };
-        }
 
-        return responseObj;
-    }
+            var filteredParams = paramsUsed.Where(x => x.Value > 0).ToDictionary(x => x.Key, x => x.Value.ToString());
 
-    #endregion
-    
-    #region SearchArtwork
+            finalisedAddress = QueryHelpers.AddQueryString(finalisedAddress, filteredParams!);
 
-    public async Task<ResponseDto?> SearchArtwork([FromQuery] string query)
-    {
-        var responseObj = new ResponseDto();
-
-        try
-        {
-
-            var finalisedAddress = $"{_httpClient.BaseAddress}/search?q={query}";
-            
             var response = await _httpClient.GetAsync(finalisedAddress);
 
             var content = await response.Content.ReadAsStringAsync();
@@ -78,35 +40,76 @@ public class ArtworkService(ILogger<ArtworkService> logger, IHttpClientFactory h
             {
                 responseObj = responseObj with
                 {
-                    IsSuccess = false,
-                    ErrorMessage = response.ReasonPhrase,
-                    StatusCode = response.StatusCode
+                    IsSuccess = false
                 };
                 return responseObj;
             }
 
             var jsonContent = JsonSerializer.Deserialize<MuseumApiDto>(content);
-            responseObj = responseObj with
-            {
-                Data = jsonContent,
-                IsSuccess = true,
-                StatusCode = response.StatusCode
-            };
+            responseObj = new ResponseDto { Data = jsonContent, IsSuccess = true };
         }
         catch (Exception ex)
         {
             logger.LogError(ex, ex.Message);
             responseObj = new ResponseDto()
             {
-                IsSuccess = false,
-                ErrorMessage = ex.Message,
-                StatusCode = HttpStatusCode.InternalServerError
+                IsSuccess = false
             };
         }
 
         return responseObj;
     }
-    
+
     #endregion
-    
+
+    #region SearchArtwork
+
+    public async Task<ResponseDto?> SearchArtwork([FromQuery] string query)
+    {
+        var responseObj = new ResponseDto();
+
+        try
+        {
+            var finalisedAddress = $"{_httpClient.BaseAddress}/search";
+
+            var paramsUsed = new Dictionary<string, string?>()
+            {
+                { "q", query },
+            };
+            
+            var filteredParams = paramsUsed.
+                Where(x => !string.IsNullOrEmpty(x.Value))
+                .ToDictionary(x => x.Key, x => x.Value);
+
+            finalisedAddress = QueryHelpers.AddQueryString(finalisedAddress, filteredParams);
+
+            var response = await _httpClient.GetAsync(finalisedAddress);
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                responseObj = responseObj with
+                {
+                    IsSuccess = false
+                };
+                return responseObj;
+            }
+
+            var jsonContent = JsonSerializer.Deserialize<MuseumApiDto>(content);
+            responseObj = new ResponseDto { Data = jsonContent, IsSuccess = true };
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, ex.Message);
+            responseObj = new ResponseDto()
+            {
+                IsSuccess = false
+            };
+        }
+
+        return responseObj;
+    }
+
+    #endregion
 }

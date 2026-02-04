@@ -1,25 +1,17 @@
 using System.Net;
 using backend.Interfaces;
-
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers;
 
 [ApiController]
 [Route("artworks")]
-public class ArtworkController : ControllerBase
+public class ArtworkController(IArtworkService artworkService) : ControllerBase
 {
-    private readonly IArtworkService _artworkService;
-
-    public ArtworkController(IArtworkService artworkService)
+    [HttpGet("getArtworks/{id?}")]
+    public async Task<IActionResult> GetArtworks(int id, [FromQuery] int page, [FromQuery] int limit)
     {
-        _artworkService = artworkService;
-    }
-
-    [HttpGet("getRandomArtworks")]
-    public async Task<IActionResult> GetRandomArtworks()
-    {
-        var responseDto = await _artworkService.GetRandomArtworks();
+        var responseDto = await artworkService.GetArtworks(id, page, limit);
 
         return responseDto switch
         {
@@ -29,11 +21,11 @@ public class ArtworkController : ControllerBase
             { IsSuccess: false } => BadRequest(responseDto)
         };
     }
-    
+
     [HttpGet("searchArtworks")]
     public async Task<IActionResult> SearchArtworks([FromQuery] string query)
     {
-        var responseDto = await _artworkService.SearchArtwork(query);
+        var responseDto = await artworkService.SearchArtwork(query);
 
         return responseDto switch
         {

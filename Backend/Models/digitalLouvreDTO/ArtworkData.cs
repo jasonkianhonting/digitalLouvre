@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace backend.Models.digitalLouvreDTO;
 
-public class ArtworkData
+public record ArtworkData
 {
     
     [JsonPropertyName("id")] public int Id { get; init; }
