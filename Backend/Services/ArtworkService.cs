@@ -28,7 +28,9 @@ public class ArtworkService(ILogger<ArtworkService> logger, IHttpClientFactory h
                 { "limit", limit }
             };
 
-            var filteredParams = paramsUsed.Where(x => x.Value > 0).ToDictionary(x => x.Key, x => x.Value.ToString());
+            var filteredParams = paramsUsed
+                .Where(x => x.Value > 0)
+                .ToDictionary(x => x.Key, x => x.Value.ToString());
 
             finalisedAddress = QueryHelpers.AddQueryString(finalisedAddress, filteredParams!);
 

@@ -1,11 +1,13 @@
 using System.Net;
 using backend.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Backend.Controllers;
 
 [ApiController]
 [Route("artworks")]
+[EnableRateLimiting("ConcurrencyLimiter")]
 public class ArtworkController(IArtworkService artworkService) : ControllerBase
 {
     [HttpGet("getArtworks/{id?}")]
