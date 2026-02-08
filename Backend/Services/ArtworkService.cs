@@ -14,7 +14,7 @@ public class ArtworkService(ILogger<ArtworkService> logger, IHttpClientFactory h
 
     #region GetArtworks
 
-    public async Task<ResponseDto?> GetArtworks(int id, int page, int limit)
+    public async Task<ResponseDto?> GetArtworks(int? id, int page, int limit)
     {
         var responseObj = new ResponseDto();
 

@@ -4,19 +4,18 @@ namespace backend.Models.digitalLouvreDTO;
 
 public record ArtworkData
 {
-    
     [JsonPropertyName("id")] public int Id { get; init; }
-    
-    [JsonPropertyName("title")] public string? Title { get; init; }
 
-    [JsonPropertyName("thumbnail")] public Thumbnail? Thumbnail { get; init; }
+    [JsonPropertyName("title")] public string? Title { get; init; }
     
+    [JsonPropertyName("thumbnail")] public Thumbnail? Thumbnail { get; init; }
+
     [JsonPropertyName("date_start")] public int? DateStart { get; init; }
 
     [JsonPropertyName("date_end")] public int? DateEnd { get; init; }
 
     [JsonPropertyName("date_display")] public string? DateDisplay { get; init; }
-    
+
     [JsonPropertyName("artist_display")] public string? ArtistDisplay { get; init; }
 
     [JsonPropertyName("place_of_origin")] public string? PlaceOfOrigin { get; init; }
@@ -69,7 +68,7 @@ public record ArtworkData
     public int? MaxZoomWindowSize { get; init; }
 
     [JsonPropertyName("copyright_notice")] public object? CopyrightNotice { get; init; }
-    
+
     [JsonPropertyName("latlon")] public object? Latlon { get; init; }
 
     [JsonPropertyName("is_on_view")] public bool? IsOnView { get; init; }
@@ -136,6 +135,6 @@ public record ArtworkData
     [JsonPropertyName("subject_ids")] public List<object>? SubjectIds { get; init; }
 
     [JsonPropertyName("subject_titles")] public List<object>? SubjectTitles { get; init; }
-    
+
     [JsonPropertyName("updated_at")] public DateTime? UpdatedAt { get; init; }
 }

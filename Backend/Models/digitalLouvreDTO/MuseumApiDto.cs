@@ -7,6 +7,8 @@ public class MuseumApiDto
 {
     [JsonPropertyName("data")][JsonConverter(typeof(ArrayObjectJsonConverter<ArtworkData?>))]
     public IEnumerable<ArtworkData>? Data { get; init; }
+    
+    [JsonPropertyName("pagination")] public Pagination? Pagination { get; init; }
 
     [JsonPropertyName("info")] public Info? Info { get; init; }
 

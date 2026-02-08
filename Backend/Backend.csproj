@@ -5,6 +5,15 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>14</LangVersion>
+        <Version>0.0.1</Version>
+        <Title>Digital Louvre</Title>
+        <Authors>Jason Ting</Authors>
+        <Description>Backend API for Digital Louvre</Description>
+        <Company>Jason Ting</Company>
+        <Product>Jason Ting</Product>
+        <AssemblyVersion>0.0.1</AssemblyVersion>
+        <FileVersion>0.0.1</FileVersion>
+        <PublicSign>true</PublicSign>
     </PropertyGroup>
 
     <ItemGroup>
@@ -90,6 +99,9 @@
         <_ContentIncludedByDefault Remove="ControllerTests\bin\Debug\net9.0\ControllerTests.deps.json"/>
         <_ContentIncludedByDefault Remove="ControllerTests\bin\Debug\net9.0\ControllerTests.runtimeconfig.json"/>
         <_ContentIncludedByDefault Remove="ControllerTests\obj\Debug\net9.0\ControllerTests.sourcelink.json"/>
+        <_ContentIncludedByDefault Remove="IntegrationTests\obj\IntegrationTests.csproj.nuget.dgspec.json" />
+        <_ContentIncludedByDefault Remove="IntegrationTests\obj\project.assets.json" />
+        <_ContentIncludedByDefault Remove="IntegrationTests\obj\project.packagespec.json" />
     </ItemGroup>
 
     <ItemGroup>
